@@ -2,8 +2,7 @@ import base64
 from urllib.request import urlopen
 import sys
 import os
-
-os.system('mode con cols=100 lines=40' + bufferSize)
+os.system('mode con cols=100 lines=40')
 
 def welcome():
     print("""
@@ -14,12 +13,12 @@ def welcome():
 ##                 After entering the url  you need to specify the file type.                     ##
 ##                    After that console will convert the image to base64.                        ##
 ##                                                                                                ##
-##                                     nauxnam 2020 ©                                             ##
+##                                nauxnam 2020 © GPL-3.0 License                                  ##
 ####################################################################################################
 """)
 
-def base64func():
-    namefile = input("Output name?: ")
+def base64encode():
+    namefile = input("Encoded image output.txt name?: ")
     outputfile = open(namefile + '.txt', 'a')
     jpgprefix = 'data:image/jpg;base64,'
     pngprefix = 'data:image/png;base64,'
@@ -31,28 +30,28 @@ def base64func():
     if filetype.lower().strip() in 'jpg'.split():
         data = base64.b64encode(dataimg).decode('utf-8')
         print(jpgprefix + data, file=outputfile)
-        print("Output has been written. Please chech the .txt file.")
+        print("Output has been written. Please check the .txt file.")
         outputfile.close()
     elif filetype.lower().strip() in 'png'.split():
         data = base64.b64encode(dataimg).decode('utf-8')
         print(pngprefix + data, file=outputfile)
-        print("Output has been written. Please chech the .txt file.")
+        print("Output has been written. Please check the .txt file.")
         outputfile.close()
     elif filetype.lower().strip() in 'bmp'.split():
         data = base64.b64encode(dataimg).decode('utf-8')
         print(bmpprefix + data, file=outputfile)
-        print("Output has been written. Please chech the .txt file.")
+        print("Output has been written. Please check the .txt file.")
         outputfile.close()
     elif filetype.lower().strip() in 'gif'.split():
         data = base64.b64encode(dataimg).decode('utf-8')
         print(gifprefix + data, file=outputfile)
-        print("Output has been written. Please chech the .txt file.")
+        print("Output has been written. Please check the .txt file.")
         outputfile.close()
     else:
         print('Please enter the file types properly. File types must be lower-case character.')
     answer = input("Do you want to reload the console again? (y/n): ")
     if answer.lower().strip() in 'y'.split():
-        base64func()
+        base64encode()
     elif answer.lower().strip() in 'n'.split():
         print("Exiting console...")
         sys.exit()
@@ -60,4 +59,4 @@ def base64func():
         print("Wrong input!!!")
 
 welcome()
-base64func()
+base64encode()
